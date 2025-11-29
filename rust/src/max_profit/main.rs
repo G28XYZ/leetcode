@@ -1,26 +1,23 @@
 pub fn max_profit(prices: Vec<i32>) -> i32 {
-	let mut profit = 0;
-	let max = 0;
-	let min = 10000;
-
-	let mut iter_prices = prices.iter();
-
-	let is_available_len = prices.len() >= 1 && prices.len() <= 100000;
-	let is_available_values = iter_prices.any(|v| *v >= max && *v <= min);
-
-	dbg!(is_available_len, is_available_values);
-
-	if !is_available_len || !is_available_values {
-		return profit;
+	if prices.is_empty() {
+			return 0;
 	}
 
-	let min_v = iter_prices.min().unwrap();
+	let mut min_price = prices[0];
+	let mut max_profit = 0;
 
-	let slice = &prices[prices.iter().position(|x| x == min_v).unwrap()..];
+	for &price in prices.iter() {
+			if price < min_price {
+					min_price = price;
+			} else {
+					let profit = price - min_price;
+					if profit > max_profit {
+							max_profit = profit;
+					}
+			}
+	}
 
-	profit = slice.iter().max().unwrap() - min_v;
-
-	profit
+	max_profit
 }
 
 
