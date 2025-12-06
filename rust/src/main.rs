@@ -3,6 +3,7 @@ mod max_profit;
 mod max_sub_array;
 mod is_valid;
 mod is_palindrome;
+mod add_two_numbers;
 
 fn main() {
 
